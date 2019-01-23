@@ -35,4 +35,8 @@
         android:summary="@string/dev_options_summary"
         android:fragment="com.android.launcher3.settings.DeveloperOptionsFragment"/>
 
+    <Preference
+        android:key="pref_trust_apps"
+        android:title="@string/trust_apps_manager_name" />
+
 </androidx.preference.PreferenceScreen>
