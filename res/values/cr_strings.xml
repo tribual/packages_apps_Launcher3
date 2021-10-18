@@ -141,4 +141,7 @@
     <!-- Memory info -->
     <string name="meminfo_text">%1$s available | %2$s</string>
     <string name="recents_meminfo_title">Memory info</string>
+
+    <!-- Recents -->
+    <string name="action_lens">Lens</string>
 </resources>
