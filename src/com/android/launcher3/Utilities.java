@@ -161,12 +161,15 @@ public final class Utilities {
     public static final int TRANSLATE_LEFT = 2;
     public static final int TRANSLATE_RIGHT = 3;
 
-    public static final String GSA_PACKAGE = "com.google.android.googlequicksearchbox";
-        public static final String KEY_DOCK_SEARCH = "pref_dock_search";
-
-
     @IntDef({TRANSLATE_UP, TRANSLATE_DOWN, TRANSLATE_LEFT, TRANSLATE_RIGHT})
     public @interface AdjustmentDirection{}
+
+    public static final String GSA_PACKAGE = "com.google.android.googlequicksearchbox";
+    public static final String KEY_DOCK_SEARCH = "pref_dock_search";
+    public static final String LENS_ACTIVITY = "com.google.android.apps.lens.MainActivity";
+    public static final String LENS_URI = "google://lens";
+
+    public static final String KEY_DOCK_SEARCH = "pref_dock_search";
 
     /**
      * Returns true if theme is dark.
