@@ -173,6 +173,12 @@
     <string name="single_page_center_title">Single page center</string>
     <string name="single_page_center_summary">Center wallpaper if only using a single page</string>
 
+    <!-- Icon pack -->
+    <string name="icon_pack_title">Icon pack</string>
+    <string name="icon_pack_default_label">Default</string>
+    <string name="icon_pack_add">Install more</string>
+    <string name="icon_pack_no_market">There\'s no available app store</string>
+
     <!-- App drawer searchbar -->
     <string name="drawer_search_title">App search bar</string>
     <string name="drawer_search_summary">Search bar on top of the app drawer</string>
