@@ -419,9 +419,10 @@
     <string name="action_toast_enabled_summary">Enable-disable Toast clear all</string>
 
     <!-- About info -->
-    <string name="about_everest_title" translatable="false">@string/everest_app_name</string>
+    <string name="about_app_title" translatable="false">Everest Launcher</string>
+    <string name="about_app_subtitle">Based on AOSP Launcher3</string>
+    <string name="about_app_version">1.1</string>
     <string name="about_thanks_cat">Special thanks to</string>
     <string name="about">About</string>
     <string name="about_summary">Info about the Everest Launcher</string>
-    <string name="about_app_version">Version 1.1</string>
 </resources>
