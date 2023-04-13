@@ -325,6 +325,8 @@
     <string name="laboratory_parallel_space_title">Parallel space</string>
     <string name="laboratory_parallel_space_summary">Allow running multiple instances of the same application in parallel</string>
 
-    <!-- Shake Clear Recents -->
+    <!-- Shake Actions -->
     <string name="shake_clear_summary">Or Shake phone to clear recents</string>
+    <string name="shake_gesture_actions_title">Torch Shake gesture</string>
+    <string name="shake_gesture_actions_summart">Shake phone at homescreen to toggle torch</string>
 </resources>
