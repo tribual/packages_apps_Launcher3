@@ -68,6 +68,7 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
     public boolean mIsQuickEvent;
     public boolean mFinishedInflate;
     public boolean mWeatherAvailable;
+    public boolean mAttached;
 
     private QuickSpaceActionReceiver mActionReceiver;
     public QuickspaceController mController;
@@ -208,6 +209,10 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
+        if (mAttached)
+            return;
+
+        mAttached = true;
         if (mController != null && mFinishedInflate) {
             mController.addListener(this);
         }
@@ -216,6 +221,10 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        if (!mAttached)
+            return;
+
+        mAttached = false;
         if (mController != null) {
             mController.removeListener(this);
         }
