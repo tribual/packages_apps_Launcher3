@@ -100,7 +100,6 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
     private static final String KEY_RECENTS_SCREENSHOT = "pref_recents_screenshot";
     private static final String KEY_RECENTS_CLEAR_ALL = "pref_recents_clear_all";
     private static final String KEY_RECENTS_LENS = "pref_recents_lens";
-    private static final String KEY_RECENTS_SHAKE_CLEAR_ALL = "pref_recents_shake_clear_all";
 
     private MultiValueAlpha mMultiValueAlpha;
     private Button mSplitButton;
@@ -128,7 +127,6 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
     private boolean mScreenshot;
     private boolean mClearAll;
     private boolean mLens;
-    private boolean mShakeClearAll;
 
     public OverviewActionsView(Context context) {
         this(context, null);
@@ -145,17 +143,23 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
         mClearAll = prefs.getBoolean(KEY_RECENTS_CLEAR_ALL, true);
         mLens = prefs.getBoolean(KEY_RECENTS_LENS, false);
         prefs.registerOnSharedPreferenceChangeListener(this);
-        mShakeUtils = new ShakeUtils(context);
-        mShakeClearAll = prefs.getBoolean(KEY_RECENTS_SHAKE_CLEAR_ALL, true);
+    }
+
+    private void bindShake() {
+        mShakeUtils.bindShakeListener(this);
+    }
+
+    private void unBindShake() {
+        mShakeUtils.unBindShakeListener(this);
     }
 
     @Override
     public void onVisibilityAggregated(boolean isVisible) {
         super.onVisibilityAggregated(isVisible);
         if (isVisible) {
-            mShakeUtils.bindShakeListener(this);
+            bindShake();
         } else {
-            mShakeUtils.unBindShakeListener(this);
+            unBindShake();
         }
     }
 
@@ -164,6 +168,7 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
         super.onFinishInflate();
         mMultiValueAlpha = new MultiValueAlpha(findViewById(R.id.action_buttons), NUM_ALPHAS);
         mMultiValueAlpha.setUpdateVisibility(true);
+        mShakeUtils = new ShakeUtils(getContext());
         updateVisibilities();
     }
 
@@ -190,9 +195,9 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
 
     @Override
     public void onShake(double speed) {
-        if (mCallbacks != null && mShakeClearAll) {
-            VibratorWrapper.INSTANCE.get(getContext()).vibrate(VibratorWrapper.EFFECT_CLICK);
+        if (mCallbacks != null && findViewById(R.id.action_clear_all).getVisibility() == VISIBLE) {
             mCallbacks.onClearAllTasksRequested();
+            setCallbacks(null); // Clear the listener after shake
         }
     }
 
@@ -248,8 +253,6 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
             mClearAll = prefs.getBoolean(KEY_RECENTS_CLEAR_ALL, true);
         } else if (key.equals(KEY_RECENTS_LENS)) {
             mLens = prefs.getBoolean(KEY_RECENTS_LENS, false);
-        } else if (key.equals(KEY_RECENTS_SHAKE_CLEAR_ALL)) {
-            mShakeClearAll = prefs.getBoolean(KEY_RECENTS_SHAKE_CLEAR_ALL, true);
         }
         updateVisibilities();
     }
