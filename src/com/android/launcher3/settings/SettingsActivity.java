@@ -111,19 +111,19 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        mShakeUtils.bindShakeListener(this);
+        mShakeUtils.registerShakeListener(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mShakeUtils.unBindShakeListener(this);
+        mShakeUtils.unregisterShakeListener(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mShakeUtils.unBindShakeListener(this);
+        mShakeUtils.unregisterShakeListener(this);
     }
 
     @Override
