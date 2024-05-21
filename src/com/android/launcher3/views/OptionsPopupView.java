@@ -58,7 +58,7 @@ import com.android.launcher3.widget.picker.WidgetsFullSheet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.android.internal.util.everest.EverestUtils;
+import com.android.internal.util.naap.NaapUtils;
 
 /**
  * Popup shown on long pressing an empty space in launcher
@@ -287,7 +287,7 @@ public class OptionsPopupView<T extends Context & ActivityContext> extends Arrow
                         launcher.getWorkspace().getWallpaperOffsetForCenterPage())
                 .putExtra(EXTRA_WALLPAPER_LAUNCH_SOURCE, "app_launched_launcher")
                 .putExtra(EXTRA_WALLPAPER_FLAVOR, "focus_wallpaper");
-        final boolean isGoogleWpInstalled = EverestUtils.isPackageInstalled(v.getContext(), GOOGLE_WP_PKG);
+        final boolean isGoogleWpInstalled = NaapUtils.isPackageInstalled(v.getContext(), GOOGLE_WP_PKG);
         String pickerPackage = isGoogleWpInstalled ? GOOGLE_WP_PKG : DEFAULT_WP_PKG;
         if (!TextUtils.isEmpty(pickerPackage)) {
             intent.setPackage(pickerPackage);

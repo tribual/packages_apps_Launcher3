@@ -42,7 +42,7 @@
         android:layout_marginStart="36dp"
         android:layout_centerVertical="true"
         android:minWidth="48dp"
-        android:src="@drawable/ic_everest"
+        android:src="@drawable/ic_naap"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"/>
         
