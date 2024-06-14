@@ -163,6 +163,7 @@ public final class Utilities {
     @IntDef({TRANSLATE_UP, TRANSLATE_DOWN, TRANSLATE_LEFT, TRANSLATE_RIGHT})
     public @interface AdjustmentDirection{}
     public static final String GSA_PACKAGE = "com.google.android.googlequicksearchbox";
+    public static final String ASI_PACKAGE = "com.google.android.as";
     public static final String LENS_ACTIVITY = "com.google.android.apps.lens.MainActivity";
     public static final String LENS_URI = "google://lens";
     public static final String LENS_SHARE_ACTIVITY = "com.google.android.apps.search.lens.LensShareEntryPointActivity";
@@ -882,6 +883,14 @@ public final class Utilities {
         try {
             return (context.getPackageManager().getApplicationInfo(GSA_PACKAGE, 0).enabled &&
                 context.getPackageManager().getApplicationInfo(GSA_PACKAGE, 0).isProduct());
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    public static boolean isASIEnabled(Context context) {
+        try {
+            return context.getPackageManager().getApplicationInfo(ASI_PACKAGE, 0).enabled;
         } catch (PackageManager.NameNotFoundException e) {
             return false;
         }

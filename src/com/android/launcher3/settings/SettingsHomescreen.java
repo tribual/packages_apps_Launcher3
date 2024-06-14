@@ -17,7 +17,13 @@
  package com.android.launcher3.settings;
 
  import static androidx.core.view.accessibility.AccessibilityNodeInfoCompat.ACTION_ACCESSIBILITY_FOCUS;
- 
+
+import static com.android.launcher3.states.RotationHelper.ALLOW_ROTATION_PREFERENCE_KEY;
+import static com.android.launcher3.Utilities.KEY_DOCK_SEARCH;
+import static com.android.launcher3.Utilities.KEY_SMARTSPACE;
+
+import static com.naap.launcher.OverlayCallbackImpl.KEY_ENABLE_MINUS_ONE;
+
  import android.content.Intent;
  import android.content.SharedPreferences;
  import android.os.Bundle;
@@ -45,8 +51,11 @@
  import com.android.launcher3.LauncherFiles;
  import com.android.launcher3.LauncherPrefs;
  import com.android.launcher3.R;
+ import com.android.launcher3.util.DisplayController;
  import com.android.launcher3.Utilities;
  import com.android.launcher3.model.WidgetsModel;
+ import com.android.launcher3.states.RotationHelper;
+
  
  import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
  
@@ -61,6 +70,9 @@
      public static final String EXTRA_SHOW_FRAGMENT_ARGS = ":settings:show_fragment_args";
      private static final int DELAY_HIGHLIGHT_DURATION_MILLIS = 600;
      public static final String SAVE_HIGHLIGHTED_KEY = "android:preference_highlighted";
+
+     private static final String KEY_SUGGESTIONS = "pref_suggestions";
+     private static final String NOTIFICATION_DOTS_PREFERENCE_KEY = "pref_icon_badging";
  
      @VisibleForTesting
      static final String EXTRA_FRAGMENT = ":settings:fragment";
@@ -97,7 +109,16 @@
      }
  
      @Override
-     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
+     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { 
+        switch (key) {
+            case Utilities.KEY_DOCK_SEARCH:
+            case Utilities.KEY_SMARTSPACE:
+                LauncherAppState.getInstanceNoCreate().setNeedsRestart();
+                break;
+            default:
+                break;
+        }
+     }
  
      private boolean startPreference(String fragment, Bundle args, String key) {
          if (getSupportFragmentManager().isStateSaved()) {
@@ -206,9 +227,40 @@
           * will remove that preference from the list.
           */
          protected boolean initPreference(Preference preference) {
-             return true;
-         }
+            switch(preference.getKey()) {
+                case KEY_ENABLE_MINUS_ONE:
+                    return isGsaEnabled();
+                case KEY_DOCK_SEARCH:
+                    return isGsaEnabled();
+                case KEY_SMARTSPACE:
+                    return (isGsaEnabled() && isAsiEnabled());
+                case KEY_SUGGESTIONS:
+                    return isAsiEnabled();
+                case NOTIFICATION_DOTS_PREFERENCE_KEY:
+                    return !WidgetsModel.GO_DISABLE_NOTIFICATION_DOTS;
+
+                case ALLOW_ROTATION_PREFERENCE_KEY:
+                    DisplayController.Info info =
+                            DisplayController.INSTANCE.get(getContext()).getInfo();
+                    if (info.isTablet(info.realBounds)) {
+                        // Launcher supports rotation by default. No need to show this setting.
+                        return false;
+                    }
+                    // Initialize the UI once
+                    preference.setDefaultValue(RotationHelper.getAllowRotationDefaultValue(info));
+                    return true;
+            }
+            return true;
+        }
  
+        private boolean isGsaEnabled() {
+            return Utilities.isGSAEnabled(getContext());
+        }
+
+        private boolean isAsiEnabled() {
+            return Utilities.isASIEnabled(getContext());
+        }
+
          @Override
          public void onResume() {
              super.onResume();
