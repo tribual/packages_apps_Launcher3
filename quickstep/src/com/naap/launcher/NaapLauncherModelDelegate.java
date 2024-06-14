@@ -15,6 +15,7 @@ import com.android.launcher3.model.BaseModelUpdateTask;
 import com.android.launcher3.model.BgDataModel;
 import com.android.launcher3.model.QuickstepModelDelegate;
 import com.android.launcher3.model.data.ItemInfo;
+import com.android.launcher3.Utilities;
 import com.android.launcher3.util.Executors;
 
 import java.io.FileDescriptor;
@@ -126,11 +127,20 @@ public class NaapLauncherModelDelegate extends QuickstepModelDelegate
         if (!mActive) {
             return;
         }
-        Log.d(TAG, "Starting smartspace session for home");
-        mSmartspaceSession = ((SmartspaceManager) mContext.getSystemService(SmartspaceManager.class))
-                                    .createSmartspaceSession(new SmartspaceConfig.Builder(mContext, "home").build());
-        mSmartspaceSession.addOnTargetsAvailableListener(Executors.MODEL_EXECUTOR, this);
-        mSmartspaceSession.requestSmartspaceUpdate();
+        if (Utilities.showSmartspace(mContext)) {
+            Log.d(TAG, "Starting smartspace session for home");
+            SmartspaceManager smartspaceManager = mContext.getSystemService(SmartspaceManager.class);
+            if (smartspaceManager != null) {
+                mSmartspaceSession = smartspaceManager.createSmartspaceSession(
+                        new SmartspaceConfig.Builder(mContext, "home").build());
+                mSmartspaceSession.addOnTargetsAvailableListener(Executors.MODEL_EXECUTOR, this);
+                mSmartspaceSession.requestSmartspaceUpdate();
+            } else {
+                Log.e(TAG, "SmartspaceManager is null");
+            }
+        } else {
+            Log.d(TAG, "Smartspace is not enabled or GApps are not detected");
+        }
     }
 
     public class SmartspaceItem extends ItemInfo {

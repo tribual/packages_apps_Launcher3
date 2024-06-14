@@ -907,7 +907,7 @@ public final class Utilities {
     }
 
     public static boolean showSmartspace(Context context) {
-        return isSmartspaceEnabled(context);
+        return isGSAEnabled(context) && isSmartspaceEnabled(context);
     }
 
     private static boolean isSmartspaceEnabled(Context context) {
