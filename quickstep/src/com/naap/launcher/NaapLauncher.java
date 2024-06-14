@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.yaap.launcher;
+package com.naap.launcher;
 
 import android.app.smartspace.SmartspaceTarget;
 import android.os.Bundle;
 
-import org.yaap.launcher.YaapLauncherModelDelegate.SmartspaceItem;
+import com.naap.launcher.NaapLauncherModelDelegate.SmartspaceItem;
 
 import com.android.launcher3.model.BgDataModel;
 import com.android.launcher3.qsb.LauncherUnlockAnimationController;
@@ -32,7 +32,7 @@ import com.google.android.systemui.smartspace.BcSmartspaceDataProvider;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class YaapLauncher extends QuickstepLauncher {
+public class NaapLauncher extends QuickstepLauncher {
 
     private BcSmartspaceDataProvider mSmartspacePlugin = new BcSmartspaceDataProvider();
     private LauncherUnlockAnimationController mUnlockAnimationController =

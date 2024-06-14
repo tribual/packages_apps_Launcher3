@@ -24,7 +24,7 @@ import static com.android.launcher3.BuildConfig.IS_DEBUG_DEVICE;
 import static com.android.launcher3.BuildConfig.IS_STUDIO_BUILD;
 import static com.android.launcher3.states.RotationHelper.ALLOW_ROTATION_PREFERENCE_KEY;
 
-import static org.yaap.launcher.OverlayCallbackImpl.KEY_ENABLE_MINUS_ONE;
+import static com.naap.launcher.OverlayCallbackImpl.KEY_ENABLE_MINUS_ONE;
 
 import android.content.Context;
 import android.content.Intent;

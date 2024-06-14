@@ -42,7 +42,7 @@
         attributes and intent filters the same
         -->
         <activity
-            android:name="org.yaap.launcher.YaapLauncher"
+            android:name="com.naap.launcher.NaapLauncher"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
             android:stateNotNeeded="true"

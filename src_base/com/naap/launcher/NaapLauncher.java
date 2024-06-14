@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.yaap.launcher;
+package com.naap.launcher;
 
 import com.android.launcher3.Launcher;
 
-public class YaapLauncher extends Launcher {
+public class NaapLauncher extends Launcher {
 
 }
