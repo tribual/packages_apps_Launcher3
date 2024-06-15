@@ -230,8 +230,6 @@ import static com.naap.launcher.OverlayCallbackImpl.KEY_ENABLE_MINUS_ONE;
             switch(preference.getKey()) {
                 case KEY_ENABLE_MINUS_ONE:
                     return isGsaEnabled();
-                case KEY_DOCK_SEARCH:
-                    return isGsaEnabled();
                 case KEY_SMARTSPACE:
                     return (isGsaEnabled() && isAsiEnabled());
                 case KEY_SUGGESTIONS:
