@@ -171,6 +171,7 @@ public final class Utilities {
     public static final String KEY_DOCK_SEARCH = "pref_dock_search";
     public static final String KEY_SMARTSPACE = "pref_smartspace";
     public static final String KEY_APP_DRAWER_OPACITY = "pref_app_drawer_opacity";
+    public static final String KEY_RECENTS_OPACITY = "pref_recents_opacity";
     public static final String KEY_FORCE_MONOCHROME_ICONS = "pref_forced_monochrome_icons";
     public static final String KEY_BLUR_DEPTH = "pref_blur_depth";
 
@@ -927,6 +928,11 @@ public final class Utilities {
     public static int getAllAppsOpacity(Context context) {
         SharedPreferences prefs = LauncherPrefs.getPrefs(context.getApplicationContext());
         return prefs.getInt(KEY_APP_DRAWER_OPACITY, 100);
+    }
+    
+    public static int getRecentsOpacity(Context context) {
+        SharedPreferences prefs = LauncherPrefs.getPrefs(context.getApplicationContext());
+        return prefs.getInt(KEY_RECENTS_OPACITY, 40);
     }
 
     public static boolean enableMonoChromeThemedIcons(Context context) {
