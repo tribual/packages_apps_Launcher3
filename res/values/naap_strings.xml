@@ -109,7 +109,7 @@
     <string name="font_size_title">Font size</string>
 
     <!-- Background opacity -->
-    <string name="background_opacity_title">App drawer opacity</string>
+    <string name="background_opacity_title">Background opacity</string>
 
     <!-- Hide labels -->
     <string name="desktop_show_labels">Show icon labels on desktop</string>
