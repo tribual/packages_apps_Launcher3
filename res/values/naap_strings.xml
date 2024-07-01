@@ -419,9 +419,9 @@
     <string name="action_toast_enabled_summary">Enable-disable Toast clear all</string>
 
     <!-- About info -->
-    <string name="about_app_title" translatable="false">Everest Launcher</string>
+    <string name="about_app_title" translatable="false">Naap Launcher</string>
     <string name="about_app_subtitle">Based on AOSP Launcher3</string>
     <string name="about_thanks_cat">Special thanks to</string>
     <string name="about">About</string>
-    <string name="about_summary">Info about the Everest Launcher</string>
+    <string name="about_summary">Info about the Naap Launcher</string>
 </resources>

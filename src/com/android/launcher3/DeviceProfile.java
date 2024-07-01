@@ -34,6 +34,7 @@ import static com.android.launcher3.testing.shared.ResourceUtils.roundPxValueFro
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -350,6 +351,8 @@ public class DeviceProfile {
                 && inv.hotseatSpecsId != INVALID_RESOURCE_HANDLE
                 && inv.workspaceCellSpecsId != INVALID_RESOURCE_HANDLE
                 && inv.allAppsCellSpecsId != INVALID_RESOURCE_HANDLE;
+
+        SharedPreferences prefs = LauncherPrefs.getPrefs(context);
 
         mIsScalableGrid = inv.isScalable && !isVerticalBarLayout() && !isMultiWindowMode;
         // Determine device posture.
